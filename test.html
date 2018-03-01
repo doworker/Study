@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas width='500' height='500' id='canvas'></canvas>
+	<script>
+		window.onload = function(){
+			var canvas = document.getElementById('canvas');
+			var ctx = canvas.getContext('2d');
+
+				ctx.fillStyle = '#ccc';
+				ctx.rect(0,0,canvas.width,canvas.height);
+				ctx.fill();
+			// function radius(x,y,w,h,r){
+			// 	ctx.beginPath();
+			// 	ctx.moveTo(x+r,y);
+			// 	ctx.lineTo(x+r+w,y);
+			// 	ctx.arcTo(x+r+w+r,y,x+r+w+r,y+r,r);
+			// 	ctx.lineTo(x+r+w+r,r+y+h);
+			// 	ctx.arcTo(x+r+w+r,y+r+r+h,x+r+w,y+r+r+h,r);
+			// 	ctx.lineTo(x+r,y+r+r+h);
+			// 	ctx.arcTo(x,y+r+r+h,x,y+r+h,r);
+			// 	ctx.lineTo(x,y+r);
+			// 	ctx.arcTo(x,y,x+r,y,r);
+			// 	ctx.strokeStyle = '#f00';
+			// 	ctx.fillStyle = 'green';
+			// 	ctx.closePath();
+			// 	ctx.stroke();
+			// 	// ctx.fill();
+			// }
+
+// 			ctx.beginPath();
+// ctx.moveTo(20,10);
+// ctx.lineTo(10+90,10);
+// ctx.arcTo(110,10,110,20,10);
+// ctx.lineTo(110,20+90);
+// ctx.arcTo(110,10+10+10+90,100,10+10+10+90,10);
+// ctx.lineTo(20,10+10+10+90);
+// ctx.arcTo(10,10+10+10+90,10,10+10+90,10);
+// ctx.lineTo(10,20);
+// ctx.arcTo(10,10,20,10,10);
+// ctx.strokeStyle = '#f00';
+// ctx.fillStyle = 'green';
+// ctx.closePath();
+// ctx.stroke();
+			
+			function radius(x,y,w,h,r){
+				ctx.save();
+				ctx.beginPath();
+				ctx.lineWidth = 0;
+				ctx.moveTo(parseInt(x+r)+0.5,parseInt(y)+0.5);
+				ctx.lineTo(parseInt(x-r+w)+0.5,parseInt(y)+0.5);
+				ctx.arcTo(parseInt(x+w)+0.5,parseInt(y)+0.5,parseInt(x+w)+0.5,parseInt(y+r)+0.5,parseInt(r));
+				ctx.lineTo(parseInt(x+w)+0.5,parseInt(y+h-r)+0.5);
+				ctx.arcTo(parseInt(x+w)+0.5,parseInt(y+h)+0.5,parseInt(x-r+w)+0.5,parseInt(y+h)+0.5,parseInt(r));
+				ctx.lineTo(parseInt(x+r)+0.5,parseInt(y+h)+0.5);
+				ctx.arcTo(parseInt(x)+0.5,parseInt(y+h)+0.5,parseInt(x)+0.5,parseInt(y-r+h)+0.5,parseInt(r));
+				ctx.lineTo(parseInt(x)+0.5,parseInt(y+r)+0.5);
+				ctx.arcTo(parseInt(x)+0.5,parseInt(y)+0.5,parseInt(x+r)+0.5,parseInt(y)+0.5,parseInt(r));
+				ctx.strokeStyle = '#f00';
+				ctx.fillStyle = 'green';
+				ctx.closePath();
+				// ctx.stroke();
+				ctx.fill();
+				// ctx.restore();
+			}
+			var w = 99, h = 99, mr = 50,r =10;
+			for(let i =0; i<3; i++){
+				for(let j = 0; j<3; j++){
+					radius(mr+(w+mr)*i,mr+(h+mr)*j,w,h,r);
+				}
+			}
+
+			// ctx.fillStyle = 'yellow';
+			// radius(200,50,100,100,10);
+			// ctx.fill();
+			
+			
+		}
+	</script>
+</body>
+</html>
